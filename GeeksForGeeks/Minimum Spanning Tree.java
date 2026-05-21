@@ -1,14 +1,3 @@
-class Triplet{
-    int w;
-    int n;
-    int p;
-    Triplet(int w, int n, int p){
-        this.w = w;
-        this.n = n;
-        this.p = p;
-    }
-}
-
 class Node{
     int n;
     int w;
@@ -21,7 +10,7 @@ class Node{
 class Solution {
     public int spanningTree(int V, int[][] edges) {
         // code here
-        PriorityQueue<Triplet> pq = new PriorityQueue<>((a,b) -> Integer.compare(a.w, b.w));
+        PriorityQueue<Node> pq = new PriorityQueue<>((a,b) -> Integer.compare(a.w, b.w));
         int maxwt = 0;
         boolean[] visited = new boolean[V];
         ArrayList<ArrayList<Node>> adj = new ArrayList<>();
@@ -40,11 +29,10 @@ class Solution {
             adj.get(c).add(new Node(n, w));
         }
         
-        pq.add(new Triplet(0,0,-1));
+        pq.add(new Node(0,0));
         
         while(!pq.isEmpty()){
-            Triplet t = pq.poll();
-            int p = t.p;
+            Node t = pq.poll();
             int n = t.n;
             int w = t.w;
             if(visited[n] == true){
@@ -57,7 +45,7 @@ class Solution {
             
             for(Node node: adj.get(n)){
                 if(visited[node.n] == false){
-                    pq.add(new Triplet(node.w,node.n,n));
+                    pq.add(new Node(node.n,node.w));
                 }
             }
         }
