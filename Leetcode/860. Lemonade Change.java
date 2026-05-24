@@ -8,7 +8,7 @@ class Solution {
                 N5--;
                 N10++;
             }else{
-                if(N10!=0){
+                if(N10>0){
                     N10--;
                     N5--;
                 }else{
