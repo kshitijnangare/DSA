@@ -66,26 +66,38 @@ class Solution {
     // }
 
     // Space optimization
-    public int uniquePaths(int m, int n) {
-        if(m==1 || n==1){
-            return 1;
-        }
-        int[] prev = new int[n];
-        Arrays.fill(prev, 0);
-        int[] curr = prev;
+    // public int uniquePaths(int m, int n) {
+    //     if(m==1 || n==1){
+    //         return 1;
+    //     }
+    //     int[] prev = new int[n];
+    //     Arrays.fill(prev, 0);
+    //     int[] curr = prev;
 
-        for(int i = 0; i<m; i++){
-            for(int j = 0; j<n; j++){
-                if(i==0 && j==0){ 
-                    curr[j]=1;
-                }else{
-                    int up = j>0 ? curr[j-1] : 0;
-                    int left = prev[j];
-                    curr[j] = up+left;
-                    prev=curr;
-                }
-            }
+    //     for(int i = 0; i<m; i++){
+    //         for(int j = 0; j<n; j++){
+    //             if(i==0 && j==0){ 
+    //                 curr[j]=1;
+    //             }else{
+    //                 int up = j>0 ? curr[j-1] : 0;
+    //                 int left = prev[j];
+    //                 curr[j] = up+left;
+    //                 prev=curr;
+    //             }
+    //         }
+    //     }
+    //     return curr[n-1];
+    // }
+
+    // using maths formula. simple geeksforgeeks technique
+    public int uniquePaths(int m, int n) {
+        long path=1;
+        int total=m+n-2;        
+        int r=Math.min(m-1,n-1);
+
+        for(int i=1;i<=r; i++) {
+            path=path*(total-r+i)/i;
         }
-        return curr[n-1];
+        return (int)path;
     }
 }
