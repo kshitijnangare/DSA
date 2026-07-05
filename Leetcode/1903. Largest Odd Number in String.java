@@ -1,0 +1,15 @@
+class Solution {
+public:
+    string largestOddNumber(string num) {
+        int n = num.size();
+        for(int i = n-1; i>=0; i--){
+            char c = num[i];
+            int x = c - '0';
+            if(x%2==1){
+                num.resize(i+1);
+                return num;
+            }
+        }
+        return "";
+    }
+};
