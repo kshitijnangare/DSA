@@ -14,18 +14,19 @@
  * }
  */
 class Solution {
-    int diameter = 0;
-    public int diameterOfBinaryTree(TreeNode root) {
-        recur(root);
-        return diameter;
-    }
-    int recur(TreeNode root){
+    public boolean isSymmetric(TreeNode root) {
         if(root==null){
-            return 0;
+            return true;
         }
-        int LH = recur(root.left);
-        int RH = recur(root.right);
-        diameter = Math.max(diameter, LH+RH);
-        return 1 + Math.max(LH, RH);
+        return recur(root.left, root.right);
+    }
+    boolean recur(TreeNode n1, TreeNode n2){
+        if(n1==null || n2==null){
+            return n1==n2;
+        }
+        if(n1.val!=n2.val){
+            return false;
+        }
+        return recur(n1.left, n2.right) && recur(n1.right, n2.left);
     }
 }
