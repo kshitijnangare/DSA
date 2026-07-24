@@ -52,12 +52,4 @@ class Solution {
 
         return dp[0];
     }
-    int recur(int i, int[] arr, int k, int[][]maxsum, int[] dp){
-        int max = 0;
-        for(int j = i; j<Math.min(arr.length, i+k);j++){
-            int sum = maxsum[i][j] * (j-i+1) + recur(j+1, arr, k, maxsum, dp);
-            max = Math.max(max, sum);
-        }
-        return dp[i]=max;
-    }
 }
